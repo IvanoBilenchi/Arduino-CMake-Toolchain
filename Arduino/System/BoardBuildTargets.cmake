@@ -697,8 +697,11 @@ function(_link_ard_lib_list target_name lib_list_var link_type
 	# Finally link the target with all the libraries
 	# message("target_link_libraries(\"${target_name}\" ${link_type} ${_link_targets})")
 	if (_link_targets)
+		cmake_policy(PUSH)
+		cmake_policy(SET CMP0079 NEW)
 		target_link_libraries("${target_name}" ${link_type}
 			${_link_targets})
+		cmake_policy(POP)
 	endif()
 
 endfunction()
